@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ChurnAI | Customer Risk Intelligence</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-mark">C</div>
+
+                <div>
+                    <h2>ChurnAI</h2>
+                    <span>Risk Intelligence</span>
+                </div>
+            </div>
+
+            <nav class="navigation">
+
+                <a href="#dashboard" class="nav-item active">
+                    <span>◈</span>
+                    Dashboard
+                </a>
+
+                <a href="#customer-analysis" class="nav-item">
+                    <span>◉</span>
+                    Customer Analysis
+                </a>
+
+                <a href="#model-insights" class="nav-item">
+                    <span>▣</span>
+                    Model Insights
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="model-status">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>Model Online</strong>
+                        <small>Logistic Regression</small>
+                    </div>
+                </div>
+
+                <div class="version">
+                    API v1.0
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content" id="dashboard">
+
+            <!-- TOP BAR -->
+            <header class="topbar">
+
+                <div>
+                    <p class="eyebrow">CUSTOMER INTELLIGENCE</p>
+                    <h1>Churn Risk Dashboard</h1>
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="live-indicator">
+                        <span></span>
+                        LIVE
+                    </div>
+
+                    <div class="avatar">
+                        AI
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- DASHBOARD GRID -->
+            <section class="dashboard-grid">
+
+
+                <!-- CUSTOMER PROFILE -->
+                <div class="panel customer-panel" id="customer-analysis">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <p class="panel-label">01 / CUSTOMER</p>
+                            <h2>Customer Profile</h2>
+                        </div>
+
+                        <span class="panel-icon">✦</span>
+
+                    </div>
+
+
+                    <div class="form-section">
+
+                        <div class="section-title">
+                            Personal
+                        </div>
+
+                        <div class="input-grid">
+
+                            <div class="field">
+                                <label>Gender</label>
+
+                                <select id="gender">
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                </select>
+                            </div>
+
+
+                            <div class="field">
+                                <label>Senior Citizen</label>
+
+                                <select id="SeniorCitizen">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+
+                            <div class="field">
+                                <label>Partner</label>
+
+                                <select id="Partner">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+
+
+                            <div class="field">
+                                <label>Dependents</label>
+
+                                <select id="Dependents">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+                        <div class="section-title">
+                            Subscription
+                        </div>
+
+                        <div class="input-grid">
+
+                            <div class="field">
+                                <label>Tenure</label>
+
+                                <div class="input-with-unit">
+                                    <input
+                                        type="number"
+                                        id="tenure"
+                                        min="0"
+                                        placeholder="0"
+                                        required
+                                    >
+                                    <span>months</span>
+                                </div>
+                            </div>
+
+
+                            <div class="field">
+                                <label>Contract</label>
+
+                                <select id="Contract">
+                                    <option value="Month-to-month">
+                                        Month-to-month
+                                    </option>
+
+                                    <option value="One year">
+                                        One year
+                                    </option>
+
+                                    <option value="Two year">
+                                        Two year
+                                    </option>
+                                </select>
+                            </div>
+
+
+                            <div class="field">
+                                <label>Monthly Charges</label>
+
+                                <div class="input-with-unit">
+                                    <span>$</span>
+
+                                    <input
+                                        type="number"
+                                        id="MonthlyCharges"
+                                        step="0.01"
+                                        min="0"
+                                        placeholder="0.00"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+
+                            <div class="field">
+                                <label>Total Charges</label>
+
+                                <div class="input-with-unit">
+                                    <span>$</span>
+
+                                    <input
+                                        type="number"
+                                        id="TotalCharges"
+                                        step="0.01"
+                                        min="0"
+                                        placeholder="0.00"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RISK SCORE -->
+                <div class="panel risk-panel" id="prediction">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <p class="panel-label">02 / PREDICTION</p>
+                            <h2>Churn Risk</h2>
+                        </div>
+
+                        <span class="panel-icon">◉</span>
+
+                    </div>
+
+
+                    <div class="risk-display">
+
+                        <div class="risk-ring">
+
+                            <div class="ring-content">
+
+                                <span id="risk-value">
+                                    --
+                                </span>
+
+                                <small>RISK</small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="risk-status">
+
+                            <span id="risk-badge" class="neutral">
+                                AWAITING ANALYSIS
+                            </span>
+
+                            <h3 id="prediction-text">
+                                Submit customer profile
+                            </h3>
+
+                            <p id="risk-description">
+                                Run the model to calculate the
+                                customer's probability of churn.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="threshold">
+
+                        <div>
+                            <span>Decision threshold</span>
+                            <strong>55%</strong>
+                        </div>
+
+                        <div class="threshold-line">
+                            <div></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SERVICES -->
+                <div class="panel services-panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <p class="panel-label">03 / SERVICES</p>
+                            <h2>Customer Services</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="service-grid">
+
+                        <div class="field">
+                            <label>Phone Service</label>
+
+                            <select id="PhoneService">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+
+                        <div class="field">
+                            <label>Multiple Lines</label>
+
+                            <select id="MultipleLines">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No phone service">
+                                    No phone service
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="field">
+                            <label>Internet Service</label>
+
+                            <select id="InternetService">
+                                <option value="Fiber optic">
+                                    Fiber optic
+                                </option>
+
+                                <option value="DSL">
+                                    DSL
+                                </option>
+
+                                <option value="No">
+                                    No
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="field">
+                            <label>Online Security</label>
+
+                            <select id="OnlineSecurity">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+
+                                <option value="No internet service">
+                                    No internet service
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="field">
+                            <label>Online Backup</label>
+
+                            <select id="OnlineBackup">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+
+                                <option value="No internet service">
+                                    No internet service
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="field">
+                            <label>Device Protection</label>
+
+                            <select id="DeviceProtection">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+
+                                <option value="No internet service">
+                                    No internet service
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="field">
+                            <label>Tech Support</label>
+
+                            <select id="TechSupport">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+
+                                <option value="No internet service">
+                                    No internet service
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="field">
+                            <label>Streaming TV</label>
+
+                            <select id="StreamingTV">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+
+                                <option value="No internet service">
+                                    No internet service
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="field">
+                            <label>Streaming Movies</label>
+
+                            <select id="StreamingMovies">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+
+                                <option value="No internet service">
+                                    No internet service
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="field">
+                            <label>Paperless Billing</label>
+
+                            <select id="PaperlessBilling">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+
+                        <div class="field full-width">
+                            <label>Payment Method</label>
+
+                            <select id="PaymentMethod">
+
+                                <option value="Electronic check">
+                                    Electronic check
+                                </option>
+
+                                <option value="Mailed check">
+                                    Mailed check
+                                </option>
+
+                                <option value="Bank transfer (automatic)">
+                                    Bank transfer (automatic)
+                                </option>
+
+                                <option value="Credit card (automatic)">
+                                    Credit card (automatic)
+                                </option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ANALYSIS -->
+                <div class="panel analysis-panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <p class="panel-label">04 / ANALYSIS</p>
+                            <h2>Risk Indicators</h2>
+                        </div>
+
+                    </div>
+
+
+                    <div id="risk-factors" class="risk-factors">
+
+                        <div class="empty-analysis">
+                            <span>✦</span>
+
+                            <p>
+                                Prediction insights will appear
+                                here after analysis.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <button id="predictButton" class="analyze-button">
+
+                        <span>Analyze Customer</span>
+
+                        <span class="arrow">→</span>
+
+                    </button>
+
+                </div>
+
+            <!-- MODEL INSIGHTS -->
+
+            <section class="model-insights-section" id="model-insights">
+
+                <div class="insights-header">
+
+                    <div>
+                        <p class="panel-label">05 / MODEL</p>
+                        <h2>Model Insights</h2>
+                        <p class="insights-description">
+                            Performance overview of the trained churn prediction model.
+                        </p>
+                    </div>
+
+                    <div class="model-badge">
+                        LOGISTIC REGRESSION
+                    </div>
+
+                </div>
+
+
+                <div class="metrics-grid">
+
+                    <div class="metric-card">
+                        <span class="metric-label">ROC-AUC</span>
+                        <strong>84.16%</strong>
+                        <small>Model discrimination</small>
+                    </div>
+
+
+                    <div class="metric-card">
+                        <span class="metric-label">RECALL</span>
+                        <strong>75.13%</strong>
+                        <small>Churn detection</small>
+                    </div>
+
+
+                    <div class="metric-card">
+                        <span class="metric-label">PRECISION</span>
+                        <strong>52.43%</strong>
+                        <small>Prediction precision</small>
+                    </div>
+
+
+                    <div class="metric-card">
+                        <span class="metric-label">F1 SCORE</span>
+                        <strong>61.76%</strong>
+                        <small>Balanced performance</small>
+                    </div>
+
+                </div>
+
+
+                <div class="model-details">
+
+                    <div class="detail-item">
+
+                        <span>Training Dataset</span>
+
+                        <strong>7,043 customers</strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>Decision Threshold</span>
+
+                        <strong>55%</strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>Target Variable</span>
+
+                        <strong>Customer Churn</strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <span>Model Type</span>
+
+                        <strong>Binary Classification</strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer>
+
+                <span>
+                    Customer Churn Prediction
+                </span>
+
+                <span>
+                    Powered by Machine Learning
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
